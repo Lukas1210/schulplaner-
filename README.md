@@ -39,7 +39,7 @@ Funktioniert offline, synchronisiert sich auf Wunsch zwischen iPhone und iPad un
 3. *Settings → Pages* → bei *Build and deployment* als **Source „GitHub Actions“** wählen.
 4. Unter *Actions* den Workflow „App auf GitHub Pages veröffentlichen“ einmal starten (*Run workflow*).
    Danach läuft er nach jeder Änderung an `main` automatisch.
-5. Die App ist dann erreichbar unter **https://lukas1210.github.io/schulplaner/**
+5. Die App ist dann erreichbar unter **https://lukas1210.github.io/schulplaner-/**
 
 ### 2. Sync einrichten (Supabase, kostenlos)
 
