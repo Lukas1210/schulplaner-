@@ -21,7 +21,7 @@ function cellLessons(day, period, s) {
 
 function cellContent(l, subj, s) {
   const sb = subj.get(l.data.subjectId);
-  return html`<span class="tc-name">${sb?.data.short || '?'}</span><span class="tc-room">${l.data.room || sb?.data.room || ''}</span>${s.abWeeks && l.data.week && l.data.week !== 'all' ? html`<span class="tc-week">${l.data.week}</span>` : ''}`;
+  return html`<span class="tc-name"><span class="tc-short">${sb?.data.short || '?'}</span><span class="tc-long">${sb?.data.name || '?'}</span></span><span class="tc-room">${l.data.room || sb?.data.room || ''}</span>${s.abWeeks && l.data.week && l.data.week !== 'all' ? html`<span class="tc-week">${l.data.week}</span>` : ''}`;
 }
 
 /** Zelle bearbeiten: Fach, Raum, Woche, Doppelstunde. */

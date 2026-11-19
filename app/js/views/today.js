@@ -49,7 +49,7 @@ function nowCard(ctx, subj, t) {
     return html`<button class="now-card" data-go="/calendar" style="width:100%;text-align:left">
       <div class="nc-row">${subjBadge(s(b), { size: 'lg' })}<div class="grow"><div class="kicker">Jetzt · bis ${minToTime(b.end)}</div><div class="nc-title">${s(b)?.data.name || 'Stunde'}</div>${line(b) ? html`<div class="nc-meta">${line(b)}</div>` : ''}</div></div>
       <div class="progress" aria-hidden="true"><div style="width:${pct}%"></div></div>
-      ${next ? html`<div class="nc-next">${subjBadge(s(next), { size: 'sm' })}<span class="grow">Danach <b>${s(next)?.data.name}</b> um ${minToTime(next.start)}</span><span class="faint">${room(next)}</span></div>` : html`<div class="nc-next faint">Danach ist Schluss für heute</div>`}
+      ${next ? html`<div class="nc-next">${subjBadge(s(next), { size: 'sm' })}<span class="grow">Danach <b>${s(next)?.data.name}</b> um ${minToTime(next.start)}</span><span class="faint">${room(next) ? `Raum ${room(next)}` : ''}</span></div>` : html`<div class="nc-next faint">Danach ist Schluss für heute</div>`}
     </button>`;
   }
   if (nn.next) {
@@ -152,14 +152,16 @@ function paint(el) {
   const openCount = all('task').filter((x) => !x.data.done).length;
   const notes = notices(t, subj);
 
+  const stats = statsSection(t, ctx);
   const left = html`
     ${nowCard(ctx, subj, t)}
     ${notes.length ? html`<div class="section" style="margin-top:14px">${notes}</div>` : ''}
     <div class="section">
       ${sectionHead('Fällig', html`<a class="section-link" href="#/tasks">${openCount ? `Alle (${openCount})` : 'Aufgaben'}</a>`)}
       ${tasks.length ? html`<div class="todo-group">${tasks.slice(0, 8).map((x) => taskRow(x, subj, t))}</div>` : html`<div class="card tight row"><span class="ok-text">${icon('check')}</span><span class="grow muted">${openCount ? 'Bis morgen ist nichts fällig.' : 'Keine offenen Hausaufgaben.'}</span><button class="text-btn small" data-act="add-task">${icon('plus')} Neu</button></div>`}
-    </div>`;
-  const right = html`${planSection(t, subj)}${examsSection(t, subj)}${statsSection(t, ctx)}`;
+    </div>
+    <div class="only-wide">${stats}</div>`;
+  const right = html`${planSection(t, subj)}${examsSection(t, subj)}<div class="only-narrow">${stats}</div>`;
 
   el.innerHTML = String(html`
     <div class="page">

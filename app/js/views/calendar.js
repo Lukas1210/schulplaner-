@@ -99,7 +99,7 @@ function weekView(ctx, subj, data) {
         cls: `filled ${now ? 'now' : ''}`,
         style: `--c:${sb?.data.color || '#5A6B7B'}`,
         attrs: html`data-block="${d.key}:${b.from}:${b.to}:${b.subjectId}" aria-label="${sb?.data.name || 'Stunde'}, ${d.title} ${b.from}. Stunde${ex.length ? ', Test' : ''}${hw.length ? ', Hausaufgabe fällig' : ''}"`,
-        content: html`<span class="tc-name">${sb?.data.short || '?'}</span><span class="tc-room">${b.room || sb?.data.room || ''}</span>${ex.length || hw.length ? html`<span class="tc-marks">${ex.map((e) => html`<span class="tc-mark">${examKind(e.data.kind).short}</span>`)}${hw.length ? html`<span class="tc-mark hw">HA</span>` : ''}</span>` : ''}`,
+        content: html`<span class="tc-name"><span class="tc-short">${sb?.data.short || '?'}</span><span class="tc-long">${sb?.data.name || '?'}</span></span><span class="tc-room">${b.room || sb?.data.room || ''}</span>${ex.length || hw.length ? html`<span class="tc-marks">${ex.map((e) => html`<span class="tc-mark">${examKind(e.data.kind).short}</span>`)}${hw.length ? html`<span class="tc-mark hw">HA</span>` : ''}</span>` : ''}`,
       };
     }),
     label: `Woche ${isoWeek(mon)}`,
