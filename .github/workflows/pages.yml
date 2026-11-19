@@ -2,7 +2,7 @@ name: App auf GitHub Pages veröffentlichen
 
 on:
   push:
-    branches: [main]
+    branches: [main, claude/schulplaner]
   workflow_dispatch:
 
 permissions:
